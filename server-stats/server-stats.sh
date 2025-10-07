@@ -1,18 +1,11 @@
 #!/bin/bash
 
-#This is a simple server stats script to monitor CPU, Memory, Disk, and Top Processes.
-
-
-# Shows CPU, Memory, Disk, and Top Process Stats
-# Compatible with most Linux distributions
-
-
 echo " SERVER PERFORMANCE STATS"
 echo "Date: $(date)"
 
 
 # ---- CPU USAGE ----
-echo ""
+
 echo "CPU USAGE:"
 cpu_idle=$(top -bn1 | grep "Cpu(s)" | awk '{print $8}' | cut -d. -f1)
 cpu_use=$((100 - cpu_idle))
@@ -37,7 +30,7 @@ ps -eo pid,comm,%cpu,%mem --sort=-%cpu | head -n 6 | awk 'NR==1{printf "%-8s %-2
 
 # ---- TOP PROCESSES BY MEMORY ----
 echo ""
-echo "TOP 5 PROCESSES BY MEMORY USAGE:"
+
 ps -eo pid,comm,%cpu,%mem --sort=-%mem | head -n 6 | awk 'NR==1{printf "%-8s %-20s %-8s %-8s\n", "PID", "COMMAND", "%CPU", "%MEM"} NR>1{printf "%-8s %-20s %-8s %-8s\n", $1, $2, $3, $4}'
 
 
