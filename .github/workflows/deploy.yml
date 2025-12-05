@@ -10,10 +10,11 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-      permissions:
-        contents: read
-        pages: write
-        id-token: write
+    
+    permissions:
+      contents: read
+      pages: write
+      id-token: writ
 
     steps:
       - name: Checkout repository
